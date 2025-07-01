@@ -19,12 +19,13 @@ export default {
   properties: {
     text: {
       label: {
-        en: "Text",
-        fr: "Texte"
+        en: "Button text",
+        fr: "Texte du bouton"
       },
       type: "Text",
       bindable: true,
       defaultValue: "Button",
+      section: "settings"
     },
     variant: {
       label: {
@@ -42,7 +43,8 @@ export default {
           { value: "link", label: { en: "Link", fr: "Lien" } },
         ]
       },
-      defaultValue: "default"
+      defaultValue: "default",
+      section: "settings"
     },
     size: {
       label: {
@@ -58,7 +60,8 @@ export default {
           { value: "icon", label: { en: "Icon", fr: "Icône" } },
         ]
       },
-      defaultValue: "default"
+      defaultValue: "default",
+      section: "settings"
     },
     disabled: {
       label: {
@@ -66,7 +69,8 @@ export default {
         fr: "Désactivé"
       },
       type: "OnOff",
-      defaultValue: false
+      defaultValue: false,
+      section: "settings"
     },
     type: {
       label: { en: "Type", fr: "Type" },
@@ -79,6 +83,7 @@ export default {
         ],
       },
       defaultValue: "button",
+      section: "settings"
     },
     leftIcon: {
       label: {
@@ -88,7 +93,8 @@ export default {
       type: "wwObject",
       options: {
         types: ["ww-icon"],
-      }
+      },
+      section: "settings"
     },
     rightIcon: {
       label: {
@@ -98,7 +104,8 @@ export default {
       type: "wwObject",
       options: {
         types: ["ww-icon"],
-      }
+      },
+      section: "settings"
     },
   }
 };

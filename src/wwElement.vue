@@ -45,6 +45,12 @@ export default {
       ].join(' ');
     }
   },
+  mounted() {
+    console.log('🔍 Shadcn Button - content:', this.content);
+    console.log('🔍 Shadcn Button - variant:', this.content.variant);
+    console.log('🔍 Shadcn Button - size:', this.content.size);
+    console.log('🔍 Shadcn Button - classes:', this.computedClasses);
+  },
   methods: {
     handleClick() {
       this.$emit("trigger-event", {
@@ -75,6 +81,12 @@ export default {
   outline: none;
   text-decoration: none;
   gap: 0.5rem; /* 8px */
+  min-height: 2.5rem; /* 40px - Force une hauteur minimum */
+  padding: 0 1rem; /* Padding par défaut */
+  
+  /* Style par défaut si pas de classe variant */
+  background-color: hsl(222.2, 47.4%, 11.2%);
+  color: hsl(210, 40%, 98%);
 
   &:focus-visible {
     outline: 2px solid hsl(222.2, 84%, 4.9%);
