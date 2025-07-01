@@ -220,7 +220,7 @@ export default {
 
 <style lang="scss" scoped>
 .shadcn-button {
-  // ✅ CORRIGÉ: Variables CSS Shadcn exactes (design tokens officiels)
+  // ✅ CORRIGÉ: Variables CSS avec fallbacks robustes
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
@@ -291,63 +291,81 @@ export default {
     opacity: 0.5;
   }
 
-  // === VARIANTS SHADCN EXACTES ===
+  // === VARIANTS SHADCN EXACTES AVEC FALLBACKS ===
   
-  // ✅ CORRIGÉ: Default variant (primary exacte)
+  // ✅ CORRIGÉ: Default variant avec fallbacks de couleur
   &--variant-default {
     background-color: hsl(var(--primary));
+    background-color: #3b82f6; /* Fallback si HSL custom properties ne marchent pas */
     color: hsl(var(--primary-foreground));
+    color: white; /* Fallback */
     
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--primary) / 0.9);
+      background-color: #2563eb; /* Fallback hover */
     }
     
     &:active:not(.shadcn-button--disabled) {
       background-color: hsl(var(--primary) / 0.95);
+      background-color: #1d4ed8; /* Fallback active */
     }
   }
   
-  // ✅ CORRIGÉ: Destructive variant exacte
+  // ✅ CORRIGÉ: Destructive variant avec fallbacks
   &--variant-destructive {
     background-color: hsl(var(--destructive));
+    background-color: #ef4444; /* Fallback rouge */
     color: hsl(var(--destructive-foreground));
+    color: white; /* Fallback */
     
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--destructive) / 0.9);
+      background-color: #dc2626; /* Fallback hover rouge */
     }
     
     &:active:not(.shadcn-button--disabled) {
       background-color: hsl(var(--destructive) / 0.95);
+      background-color: #b91c1c; /* Fallback active rouge */
     }
   }
   
   // ✅ CORRIGÉ: Outline variant avec border exacte
   &--variant-outline {
     border: 1px solid hsl(var(--border));
+    border: 1px solid #e5e7eb; /* Fallback border */
     background-color: hsl(var(--background));
+    background-color: white; /* Fallback */
     color: hsl(var(--foreground));
+    color: #111827; /* Fallback text */
     
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--accent));
+      background-color: #f9fafb; /* Fallback hover */
       color: hsl(var(--accent-foreground));
+      color: #111827; /* Fallback */
     }
     
     &:active:not(.shadcn-button--disabled) {
       background-color: hsl(var(--accent) / 0.8);
+      background-color: #f3f4f6; /* Fallback active */
     }
   }
   
   // ✅ CORRIGÉ: Secondary variant exacte
   &--variant-secondary {
     background-color: hsl(var(--secondary));
+    background-color: #f1f5f9; /* Fallback gris clair */
     color: hsl(var(--secondary-foreground));
+    color: #0f172a; /* Fallback text sombre */
     
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--secondary) / 0.8);
+      background-color: #e2e8f0; /* Fallback hover */
     }
     
     &:active:not(.shadcn-button--disabled) {
       background-color: hsl(var(--secondary) / 0.9);
+      background-color: #cbd5e1; /* Fallback active */
     }
   }
   
@@ -355,14 +373,18 @@ export default {
   &--variant-ghost {
     background-color: transparent;
     color: hsl(var(--foreground));
+    color: #111827; /* Fallback */
     
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--accent));
+      background-color: #f9fafb; /* Fallback hover */
       color: hsl(var(--accent-foreground));
+      color: #111827; /* Fallback */
     }
     
     &:active:not(.shadcn-button--disabled) {
       background-color: hsl(var(--accent) / 0.8);
+      background-color: #f3f4f6; /* Fallback active */
     }
   }
   
@@ -370,6 +392,7 @@ export default {
   &--variant-link {
     background-color: transparent;
     color: hsl(var(--primary));
+    color: #3b82f6; /* Fallback bleu */
     text-decoration: underline;
     text-underline-offset: 4px;
     height: auto;
@@ -377,10 +400,12 @@ export default {
     
     &:hover:not(.shadcn-button--disabled) {
       color: hsl(var(--primary) / 0.9);
+      color: #2563eb; /* Fallback hover */
     }
     
     &:active:not(.shadcn-button--disabled) {
       color: hsl(var(--primary) / 0.8);
+      color: #1d4ed8; /* Fallback active */
     }
   }
 
@@ -462,12 +487,13 @@ export default {
     
     &:hover {
       outline: 2px dashed hsl(var(--ring));
+      outline: 2px dashed #3b82f6; /* Fallback */
       outline-offset: 2px;
     }
   }
 }
 
-// ✅ CORRIGÉ: Mode sombre exacte Shadcn
+// ✅ CORRIGÉ: Mode sombre avec fallbacks
 @media (prefers-color-scheme: dark) {
   .shadcn-button {
     --background: 222.2 84% 4.9%;
@@ -489,6 +515,44 @@ export default {
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
+    
+    // Fallbacks pour mode sombre
+    &--variant-default {
+      background-color: #60a5fa; /* Fallback primary dark */
+      color: #1e293b; /* Fallback text dark */
+      
+      &:hover:not(.shadcn-button--disabled) {
+        background-color: #3b82f6; /* Fallback hover dark */
+      }
+    }
+    
+    &--variant-destructive {
+      background-color: #dc2626; /* Fallback destructive dark */
+      color: #f8fafc; /* Fallback text light */
+      
+      &:hover:not(.shadcn-button--disabled) {
+        background-color: #b91c1c; /* Fallback hover dark */
+      }
+    }
+    
+    &--variant-outline {
+      border-color: #374151; /* Fallback border dark */
+      background-color: #111827; /* Fallback bg dark */
+      color: #f9fafb; /* Fallback text light */
+      
+      &:hover:not(.shadcn-button--disabled) {
+        background-color: #1f2937; /* Fallback hover dark */
+      }
+    }
+    
+    &--variant-secondary {
+      background-color: #374151; /* Fallback secondary dark */
+      color: #f9fafb; /* Fallback text light */
+      
+      &:hover:not(.shadcn-button--disabled) {
+        background-color: #4b5563; /* Fallback hover dark */
+      }
+    }
   }
 }
 
