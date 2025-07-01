@@ -45,12 +45,6 @@ export default {
       ].join(' ');
     }
   },
-  mounted() {
-    console.log('🔍 Shadcn Button - content:', this.content);
-    console.log('🔍 Shadcn Button - variant:', this.content.variant);
-    console.log('🔍 Shadcn Button - size:', this.content.size);
-    console.log('🔍 Shadcn Button - classes:', this.computedClasses);
-  },
   methods: {
     handleClick() {
       this.$emit("trigger-event", {
@@ -62,8 +56,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-/* Shadcn Button - Version simplifiée et fonctionnelle */
+<style>
+/* Shadcn Button - Version compatible Weweb */
 .shadcn-btn {
   /* Base styles - identiques à Shadcn */
   display: inline-flex;
@@ -81,196 +75,155 @@ export default {
   outline: none;
   text-decoration: none;
   gap: 0.5rem; /* 8px */
-  min-height: 2.5rem; /* 40px - Force une hauteur minimum */
-  padding: 0 1rem; /* Padding par défaut */
+  min-height: 2.5rem; /* 40px */
+  padding: 0 1rem; /* 16px */
   
-  /* Style par défaut si pas de classe variant */
+  /* Style par défaut */
   background-color: hsl(222.2, 47.4%, 11.2%);
   color: hsl(210, 40%, 98%);
-
-  &:focus-visible {
-    outline: 2px solid hsl(222.2, 84%, 4.9%);
-    outline-offset: 2px;
-  }
-
-  &:disabled {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  /* Icons styling */
-  .button-icon {
-    flex-shrink: 0;
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .button-text {
-    flex: 1;
-    text-align: center;
-  }
-
-  /* VARIANTS - Couleurs exactes Shadcn */
-  
-  /* Default variant - Dark primary */
-  &--default {
-    background-color: hsl(222.2, 47.4%, 11.2%); /* Shadcn primary */
-    color: hsl(210, 40%, 98%); /* Shadcn primary-foreground */
-    border-color: hsl(222.2, 47.4%, 11.2%);
-
-    &:hover:not(:disabled) {
-      background-color: hsl(222.2, 47.4%, 10%); /* Darker */
-    }
-
-    &:active:not(:disabled) {
-      background-color: hsl(222.2, 47.4%, 8%);
-    }
-  }
-
-  /* Destructive variant - Red */
-  &--destructive {
-    background-color: hsl(0, 84.2%, 60.2%); /* Shadcn destructive */
-    color: hsl(210, 40%, 98%); /* Shadcn destructive-foreground */
-    border-color: hsl(0, 84.2%, 60.2%);
-
-    &:hover:not(:disabled) {
-      background-color: hsl(0, 84.2%, 55%);
-    }
-
-    &:active:not(:disabled) {
-      background-color: hsl(0, 84.2%, 50%);
-    }
-  }
-
-  /* Outline variant */
-  &--outline {
-    background-color: transparent;
-    color: hsl(222.2, 84%, 4.9%); /* Shadcn foreground */
-    border-color: hsl(214.3, 31.8%, 91.4%); /* Shadcn input */
-
-    &:hover:not(:disabled) {
-      background-color: hsl(210, 40%, 96%); /* Shadcn accent */
-      color: hsl(222.2, 84%, 4.9%); /* Shadcn accent-foreground */
-    }
-
-    &:active:not(:disabled) {
-      background-color: hsl(210, 40%, 94%);
-    }
-  }
-
-  /* Secondary variant */
-  &--secondary {
-    background-color: hsl(210, 40%, 96%); /* Shadcn secondary */
-    color: hsl(222.2, 84%, 4.9%); /* Shadcn secondary-foreground */
-    border-color: hsl(210, 40%, 96%);
-
-    &:hover:not(:disabled) {
-      background-color: hsl(210, 40%, 92%);
-    }
-
-    &:active:not(:disabled) {
-      background-color: hsl(210, 40%, 88%);
-    }
-  }
-
-  /* Ghost variant */
-  &--ghost {
-    background-color: transparent;
-    color: hsl(222.2, 84%, 4.9%); /* Shadcn foreground */
-    border-color: transparent;
-
-    &:hover:not(:disabled) {
-      background-color: hsl(210, 40%, 96%); /* Shadcn accent */
-      color: hsl(222.2, 84%, 4.9%); /* Shadcn accent-foreground */
-    }
-
-    &:active:not(:disabled) {
-      background-color: hsl(210, 40%, 94%);
-    }
-  }
-
-  /* Link variant */
-  &--link {
-    background-color: transparent;
-    color: hsl(222.2, 47.4%, 11.2%); /* Shadcn primary */
-    border-color: transparent;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-
-    &:hover:not(:disabled) {
-      color: hsl(222.2, 47.4%, 20%); /* Plus visible */
-      text-decoration: underline;
-    }
-
-    &:active:not(:disabled) {
-      color: hsl(222.2, 47.4%, 15%);
-    }
-  }
-
-  /* SIZES - Tailles exactes Shadcn */
-  
-  /* Small size */
-  &--sm {
-    height: 2.25rem; /* 36px */
-    padding: 0 0.75rem; /* 12px */
-    border-radius: 0.375rem; /* 6px */
-    font-size: 0.875rem; /* 14px */
-  }
-
-  /* Default size */
-  &--default {
-    height: 2.5rem; /* 40px */
-    padding: 0 1rem; /* 16px */
-  }
-
-  /* Large size */
-  &--lg {
-    height: 2.75rem; /* 44px */
-    padding: 0 2rem; /* 32px */
-    border-radius: 0.375rem; /* 6px */
-    font-size: 1rem; /* 16px */
-  }
-
-  /* Icon size */
-  &--icon {
-    height: 2.5rem; /* 40px */
-    width: 2.5rem; /* 40px */
-    padding: 0;
-  }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .shadcn-btn {
-    /* Ajuste les couleurs pour le mode sombre si nécessaire */
-    &--outline {
-      color: hsl(210, 40%, 98%);
-      border-color: hsl(217.2, 32.6%, 17.5%);
+.shadcn-btn:focus-visible {
+  outline: 2px solid hsl(222.2, 84%, 4.9%);
+  outline-offset: 2px;
+}
 
-      &:hover:not(:disabled) {
-        background-color: hsl(217.2, 32.6%, 17.5%);
-        color: hsl(210, 40%, 98%);
-      }
-    }
+.shadcn-btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
-    &--ghost {
-      color: hsl(210, 40%, 98%);
+/* Icons styling */
+.shadcn-btn .button-icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
 
-      &:hover:not(:disabled) {
-        background-color: hsl(217.2, 32.6%, 17.5%);
-        color: hsl(210, 40%, 98%);
-      }
-    }
+.shadcn-btn .button-text {
+  flex: 1;
+  text-align: center;
+}
 
-    &--secondary {
-      background-color: hsl(217.2, 32.6%, 17.5%);
-      color: hsl(210, 40%, 98%);
-      border-color: hsl(217.2, 32.6%, 17.5%);
+/* VARIANTS */
 
-      &:hover:not(:disabled) {
-        background-color: hsl(217.2, 32.6%, 20%);
-      }
-    }
-  }
+/* Default variant */
+.shadcn-btn--default {
+  background-color: hsl(222.2, 47.4%, 11.2%);
+  color: hsl(210, 40%, 98%);
+  border-color: hsl(222.2, 47.4%, 11.2%);
+}
+
+.shadcn-btn--default:hover:not(:disabled) {
+  background-color: hsl(222.2, 47.4%, 10%);
+}
+
+.shadcn-btn--default:active:not(:disabled) {
+  background-color: hsl(222.2, 47.4%, 8%);
+}
+
+/* Destructive variant */
+.shadcn-btn--destructive {
+  background-color: hsl(0, 84.2%, 60.2%);
+  color: hsl(210, 40%, 98%);
+  border-color: hsl(0, 84.2%, 60.2%);
+}
+
+.shadcn-btn--destructive:hover:not(:disabled) {
+  background-color: hsl(0, 84.2%, 55%);
+}
+
+.shadcn-btn--destructive:active:not(:disabled) {
+  background-color: hsl(0, 84.2%, 50%);
+}
+
+/* Outline variant */
+.shadcn-btn--outline {
+  background-color: transparent;
+  color: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(214.3, 31.8%, 91.4%);
+}
+
+.shadcn-btn--outline:hover:not(:disabled) {
+  background-color: hsl(210, 40%, 96%);
+  color: hsl(222.2, 84%, 4.9%);
+}
+
+.shadcn-btn--outline:active:not(:disabled) {
+  background-color: hsl(210, 40%, 94%);
+}
+
+/* Secondary variant */
+.shadcn-btn--secondary {
+  background-color: hsl(210, 40%, 96%);
+  color: hsl(222.2, 84%, 4.9%);
+  border-color: hsl(210, 40%, 96%);
+}
+
+.shadcn-btn--secondary:hover:not(:disabled) {
+  background-color: hsl(210, 40%, 92%);
+}
+
+.shadcn-btn--secondary:active:not(:disabled) {
+  background-color: hsl(210, 40%, 88%);
+}
+
+/* Ghost variant */
+.shadcn-btn--ghost {
+  background-color: transparent;
+  color: hsl(222.2, 84%, 4.9%);
+  border-color: transparent;
+}
+
+.shadcn-btn--ghost:hover:not(:disabled) {
+  background-color: hsl(210, 40%, 96%);
+  color: hsl(222.2, 84%, 4.9%);
+}
+
+.shadcn-btn--ghost:active:not(:disabled) {
+  background-color: hsl(210, 40%, 94%);
+}
+
+/* Link variant */
+.shadcn-btn--link {
+  background-color: transparent;
+  color: hsl(222.2, 47.4%, 11.2%);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.shadcn-btn--link:hover:not(:disabled) {
+  color: hsl(222.2, 47.4%, 20%);
+  text-decoration: underline;
+}
+
+.shadcn-btn--link:active:not(:disabled) {
+  color: hsl(222.2, 47.4%, 15%);
+}
+
+/* SIZES */
+
+/* Small size */
+.shadcn-btn--sm {
+  height: 2.25rem; /* 36px */
+  padding: 0 0.75rem; /* 12px */
+  font-size: 0.875rem; /* 14px */
+}
+
+/* Default size - déjà défini dans .shadcn-btn */
+
+/* Large size */
+.shadcn-btn--lg {
+  height: 2.75rem; /* 44px */
+  padding: 0 2rem; /* 32px */
+  font-size: 1rem; /* 16px */
+}
+
+/* Icon size */
+.shadcn-btn--icon {
+  height: 2.5rem; /* 40px */
+  width: 2.5rem; /* 40px */
+  padding: 0;
 }
 </style>
