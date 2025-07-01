@@ -11,29 +11,29 @@
     @focus="handleFocus"
     @blur="handleBlur"
   >
-    <!-- Icône gauche (si activée et pas icon only) -->
+    <!-- ✅ CORRIGÉ: Icône gauche avec gap automatique -->
     <i 
       v-if="hasLeftIcon && size !== 'icon'" 
       :class="leftIcon"
       class="shadcn-button__left-icon"
     ></i>
     
-    <!-- Icône pour Icon Only -->
+    <!-- ✅ CORRIGÉ: Icône pour Icon Only -->
     <i 
       v-if="size === 'icon' && iconOnly" 
       :class="iconOnly"
       class="shadcn-button__icon-only"
     ></i>
     
-    <!-- Texte (caché pour icon only) -->
+    <!-- ✅ CORRIGÉ: Texte (avec line-height optimisé) -->
     <span 
-      v-if="size !== 'icon'"
+      v-if="size !== 'icon' && text"
       class="shadcn-button__text"
     >
       {{ text }}
     </span>
     
-    <!-- Icône droite (si activée et pas icon only) -->
+    <!-- ✅ CORRIGÉ: Icône droite avec gap automatique -->
     <i 
       v-if="hasRightIcon && size !== 'icon'" 
       :class="rightIcon"
@@ -112,33 +112,21 @@ export default {
     
     // Classes CSS dynamiques
     buttonClasses() {
-      const baseClass = 'shadcn-button';
-      const variantClass = `${baseClass}--variant-${this.variant}`;
-      const sizeClass = `${baseClass}--size-${this.size}`;
-      
-      const conditionalClasses = [];
+      const classes = [
+        'shadcn-button',
+        `shadcn-button--variant-${this.variant}`,
+        `shadcn-button--size-${this.size}`,
+      ];
       
       if (this.isDisabled) {
-        conditionalClasses.push(`${baseClass}--disabled`);
+        classes.push('shadcn-button--disabled');
       }
       
       if (this.isEditing) {
-        conditionalClasses.push(`${baseClass}--editing`);
+        classes.push('shadcn-button--editing');
       }
       
-      if (this.hasLeftIcon && this.size !== 'icon') {
-        conditionalClasses.push(`${baseClass}--has-left-icon`);
-      }
-      
-      if (this.hasRightIcon && this.size !== 'icon') {
-        conditionalClasses.push(`${baseClass}--has-right-icon`);
-      }
-      
-      if (this.size === 'icon') {
-        conditionalClasses.push(`${baseClass}--icon-only`);
-      }
-      
-      return [baseClass, variantClass, sizeClass, ...conditionalClasses];
+      return classes;
     },
     
     // Gestion disabled
@@ -232,10 +220,14 @@ export default {
 
 <style lang="scss" scoped>
 .shadcn-button {
-  // Variables CSS Shadcn (design system)
+  // ✅ CORRIGÉ: Variables CSS Shadcn exactes (design tokens officiels)
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
   --primary-foreground: 210 40% 98%;
   --secondary: 210 40% 96%;
   --secondary-foreground: 222.2 84% 4.9%;
@@ -247,52 +239,61 @@ export default {
   --destructive-foreground: 210 40% 98%;
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
 
-  // Reset minimal pour button HTML
+  // ✅ CORRIGÉ: Reset exact Shadcn + normalize
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
   margin: 0;
+  padding: 0;
+  background: transparent;
   font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
   text-decoration: none;
+  box-sizing: border-box;
   
-  // Structure de base Shadcn
+  // ✅ CORRIGÉ: Structure exacte Shadcn (design tokens)
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   white-space: nowrap;
-  border-radius: 0.375rem;
+  border-radius: calc(var(--radius) - 2px);
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
   cursor: pointer;
   outline: none;
   position: relative;
+  user-select: none;
   
-  // Tailles par défaut
-  padding: 0.5rem 1rem;
-  min-height: 2.5rem;
+  // ✅ CORRIGÉ: Taille par défaut exacte
+  height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   
-  // États focus
+  // ✅ CORRIGÉ: Focus ring exacte Shadcn
   &:focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
-    z-index: 10;
   }
   
-  // État disabled
+  // ✅ CORRIGÉ: État disabled exact
   &--disabled {
     pointer-events: none;
     opacity: 0.5;
-    cursor: not-allowed;
   }
 
-  // === VARIANTS SHADCN ===
+  // === VARIANTS SHADCN EXACTES ===
   
-  // Default variant
+  // ✅ CORRIGÉ: Default variant (primary exacte)
   &--variant-default {
     background-color: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
@@ -300,9 +301,13 @@ export default {
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--primary) / 0.9);
     }
+    
+    &:active:not(.shadcn-button--disabled) {
+      background-color: hsl(var(--primary) / 0.95);
+    }
   }
   
-  // Destructive variant
+  // ✅ CORRIGÉ: Destructive variant exacte
   &--variant-destructive {
     background-color: hsl(var(--destructive));
     color: hsl(var(--destructive-foreground));
@@ -310,9 +315,13 @@ export default {
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--destructive) / 0.9);
     }
+    
+    &:active:not(.shadcn-button--disabled) {
+      background-color: hsl(var(--destructive) / 0.95);
+    }
   }
   
-  // Outline variant
+  // ✅ CORRIGÉ: Outline variant avec border exacte
   &--variant-outline {
     border: 1px solid hsl(var(--border));
     background-color: hsl(var(--background));
@@ -322,9 +331,13 @@ export default {
       background-color: hsl(var(--accent));
       color: hsl(var(--accent-foreground));
     }
+    
+    &:active:not(.shadcn-button--disabled) {
+      background-color: hsl(var(--accent) / 0.8);
+    }
   }
   
-  // Secondary variant
+  // ✅ CORRIGÉ: Secondary variant exacte
   &--variant-secondary {
     background-color: hsl(var(--secondary));
     color: hsl(var(--secondary-foreground));
@@ -332,9 +345,13 @@ export default {
     &:hover:not(.shadcn-button--disabled) {
       background-color: hsl(var(--secondary) / 0.8);
     }
+    
+    &:active:not(.shadcn-button--disabled) {
+      background-color: hsl(var(--secondary) / 0.9);
+    }
   }
   
-  // Ghost variant
+  // ✅ CORRIGÉ: Ghost variant exacte
   &--variant-ghost {
     background-color: transparent;
     color: hsl(var(--foreground));
@@ -343,136 +360,124 @@ export default {
       background-color: hsl(var(--accent));
       color: hsl(var(--accent-foreground));
     }
+    
+    &:active:not(.shadcn-button--disabled) {
+      background-color: hsl(var(--accent) / 0.8);
+    }
   }
   
-  // Link variant
+  // ✅ CORRIGÉ: Link variant exacte
   &--variant-link {
     background-color: transparent;
     color: hsl(var(--primary));
     text-decoration: underline;
     text-underline-offset: 4px;
+    height: auto;
+    padding: 0;
     
     &:hover:not(.shadcn-button--disabled) {
-      text-decoration: underline;
+      color: hsl(var(--primary) / 0.9);
+    }
+    
+    &:active:not(.shadcn-button--disabled) {
+      color: hsl(var(--primary) / 0.8);
     }
   }
 
-  // Icônes
+  // ✅ CORRIGÉ: Icônes exactes
   &__left-icon, &__right-icon, &__icon-only {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  &__left-icon {
-    margin-right: 0.25rem;
-  }
-  
-  &__right-icon {
-    margin-left: 0.25rem;
-  }
-  
-  &__icon-only {
-    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
   }
   
   &__text {
     flex: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1;
   }
 
-  // === TAILLES SHADCN ===
+  // === TAILLES SHADCN EXACTES ===
   
+  // ✅ CORRIGÉ: Small size exacte
   &--size-sm {
     height: 2.25rem;
-    padding: 0 0.75rem;
+    border-radius: calc(var(--radius) - 2px);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     font-size: 0.875rem;
-    gap: 0.375rem;
-    border-radius: 0.375rem;
     
     .shadcn-button__left-icon, .shadcn-button__right-icon, .shadcn-button__icon-only {
-      font-size: 0.875rem;
       width: 0.875rem;
       height: 0.875rem;
     }
   }
   
+  // ✅ CORRIGÉ: Default size exacte
   &--size-default {
     height: 2.5rem;
-    padding: 0.5rem 1rem;
+    border-radius: calc(var(--radius) - 2px);
+    padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 0.875rem;
-    gap: 0.5rem;
-    border-radius: 0.375rem;
     
     .shadcn-button__left-icon, .shadcn-button__right-icon, .shadcn-button__icon-only {
-      font-size: 1rem;
       width: 1rem;
       height: 1rem;
     }
   }
   
+  // ✅ CORRIGÉ: Large size exacte
   &--size-lg {
     height: 2.75rem;
-    padding: 0.5rem 2rem;
+    border-radius: calc(var(--radius) - 2px);
+    padding-left: 2rem;
+    padding-right: 2rem;
     font-size: 1rem;
-    gap: 0.625rem;
-    border-radius: 0.375rem;
     
     .shadcn-button__left-icon, .shadcn-button__right-icon, .shadcn-button__icon-only {
-      font-size: 1.125rem;
       width: 1.125rem;
       height: 1.125rem;
     }
   }
   
+  // ✅ CORRIGÉ: Icon size exacte
   &--size-icon {
     height: 2.5rem;
     width: 2.5rem;
+    border-radius: calc(var(--radius) - 2px);
     padding: 0;
-    min-width: 2.5rem;
-    gap: 0;
-    border-radius: 0.375rem;
     
     .shadcn-button__icon-only {
-      font-size: 1rem;
       width: 1rem;
       height: 1rem;
     }
   }
   
-  // États hover (améliorés)
-  &:hover:not(.shadcn-button--disabled) {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  // États actifs
-  &:active:not(.shadcn-button--disabled) {
-    transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  // Mode édition spécifique
+  // Mode édition Weweb
   &--editing {
     cursor: pointer;
     
     &:hover {
-      outline: 2px dashed hsl(var(--primary));
+      outline: 2px dashed hsl(var(--ring));
       outline-offset: 2px;
     }
   }
 }
 
-// Mode sombre (respecte le design system Shadcn)
+// ✅ CORRIGÉ: Mode sombre exacte Shadcn
 @media (prefers-color-scheme: dark) {
   .shadcn-button {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -483,16 +488,17 @@ export default {
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 224.3 76.3% 94.1%;
   }
 }
 
-// ✅ AJOUTÉ: Support responsive Weweb
+// Support responsive
 @media (max-width: 768px) {
   .shadcn-button {
     &--size-lg {
       height: 2.5rem;
-      padding: 0.5rem 1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
       font-size: 0.875rem;
     }
   }
