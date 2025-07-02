@@ -4,9 +4,9 @@ export default {
       en: "Shadcn Button",
       fr: "Bouton Shadcn"
     },
-    icon: "fontawesome/solid/mouse-pointer",
+    icon: "fontawesome/solid/cursor-pointer",
     bubble: {
-      icon: "fontawesome/solid/mouse-pointer"
+      icon: "fontawesome/solid/cursor-pointer"
     }
   },
   triggerEvents: [
@@ -25,7 +25,7 @@ export default {
       type: "Text",
       bindable: true,
       defaultValue: "Button",
-      section: "settings"
+      section: "content"
     },
     variant: {
       label: {
@@ -35,16 +35,16 @@ export default {
       type: "TextSelect",
       options: {
         options: [
-          { value: "default", label: { en: "Default", fr: "Par défaut" } },
-          { value: "destructive", label: { en: "Destructive", fr: "Destructeur" } },
-          { value: "outline", label: { en: "Outline", fr: "Contour" } },
-          { value: "secondary", label: { en: "Secondary", fr: "Secondaire" } },
-          { value: "ghost", label: { en: "Ghost", fr: "Fantôme" } },
-          { value: "link", label: { en: "Link", fr: "Lien" } },
+          { value: "default", label: { en: "Default (Dark)", fr: "Par défaut (Sombre)" } },
+          { value: "destructive", label: { en: "Destructive (Red)", fr: "Destructeur (Rouge)" } },
+          { value: "outline", label: { en: "Outline (Border)", fr: "Contour (Bordure)" } },
+          { value: "secondary", label: { en: "Secondary (Gray)", fr: "Secondaire (Gris)" } },
+          { value: "ghost", label: { en: "Ghost (Transparent)", fr: "Fantôme (Transparent)" } },
+          { value: "link", label: { en: "Link (Underlined)", fr: "Lien (Souligné)" } },
         ]
       },
       defaultValue: "default",
-      section: "settings"
+      section: "style"
     },
     size: {
       label: {
@@ -54,14 +54,14 @@ export default {
       type: "TextSelect",
       options: {
         options: [
-          { value: "sm", label: { en: "Small", fr: "Petit" } },
-          { value: "default", label: { en: "Default", fr: "Par défaut" } },
-          { value: "lg", label: { en: "Large", fr: "Grand" } },
-          { value: "icon", label: { en: "Icon", fr: "Icône" } },
+          { value: "sm", label: { en: "Small (36px)", fr: "Petit (36px)" } },
+          { value: "default", label: { en: "Default (40px)", fr: "Par défaut (40px)" } },
+          { value: "lg", label: { en: "Large (44px)", fr: "Grand (44px)" } },
+          { value: "icon", label: { en: "Icon only (40×40px)", fr: "Icône seule (40×40px)" } },
         ]
       },
       defaultValue: "default",
-      section: "settings"
+      section: "style"
     },
     disabled: {
       label: {
@@ -70,20 +70,21 @@ export default {
       },
       type: "OnOff",
       defaultValue: false,
-      section: "settings"
+      bindable: true,
+      section: "behavior"
     },
     type: {
-      label: { en: "Type", fr: "Type" },
+      label: { en: "HTML Type", fr: "Type HTML" },
       type: "TextSelect",
       options: {
         options: [
-          { value: "button", label: { en: "Button", fr: "Bouton" } },
-          { value: "submit", label: { en: "Submit", fr: "Soumettre" } },
-          { value: "reset", label: { en: "Reset", fr: "Réinitialiser" } },
+          { value: "button", label: { en: "Button (Default)", fr: "Bouton (Par défaut)" } },
+          { value: "submit", label: { en: "Submit (Form)", fr: "Soumettre (Formulaire)" } },
+          { value: "reset", label: { en: "Reset (Form)", fr: "Réinitialiser (Formulaire)" } },
         ],
       },
       defaultValue: "button",
-      section: "settings"
+      section: "behavior"
     },
     leftIcon: {
       label: {
@@ -94,7 +95,8 @@ export default {
       options: {
         types: ["ww-icon"],
       },
-      section: "settings"
+      bindable: true,
+      section: "icons"
     },
     rightIcon: {
       label: {
@@ -105,7 +107,8 @@ export default {
       options: {
         types: ["ww-icon"],
       },
-      section: "settings"
+      bindable: true,
+      section: "icons"
     },
   }
 };

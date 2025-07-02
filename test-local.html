@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🧪 Test Shadcn Button - Version Finalisée Weweb</title>
+  <title>🧪 Test Shadcn Button - Spécifications Exactes Shadcn UI</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <style>
     body {
@@ -40,7 +40,7 @@
     .label {
       font-size: 14px;
       color: #64748b;
-      min-width: 120px;
+      min-width: 140px;
     }
     
     .status {
@@ -61,106 +61,150 @@
       display: inline-block;
       mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>') no-repeat center/contain;
     }
+
+    .test-description {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
-  <h1>🧪 Test Shadcn Button - Version Finalisée Weweb</h1>
+  <h1>🧪 Test Shadcn Button - Spécifications Exactes Shadcn UI</h1>
   
   <div id="app">
     <div class="test-section">
-      <div class="test-title">🎨 Variantes Shadcn (Couleurs exactes)</div>
+      <div class="test-title">🎨 Variantes (Couleurs exactes Shadcn UI)</div>
+      <div class="test-description">Toutes les couleurs et comportements identiques à shadcn.com</div>
       
       <div class="button-row">
-        <span class="label">Default (Dark):</span>
+        <span class="label">Default (Primary):</span>
         <shadcn-button :content="{ text: 'Button', variant: 'default' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">hsl(222.2 84% 4.9%)</span>
       </div>
       
       <div class="button-row">
-        <span class="label">Destructive (Red):</span>
+        <span class="label">Destructive (Danger):</span>
         <shadcn-button :content="{ text: 'Delete', variant: 'destructive' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">hsl(0 84.2% 60.2%)</span>
       </div>
       
       <div class="button-row">
         <span class="label">Outline (Border):</span>
         <shadcn-button :content="{ text: 'Outline', variant: 'outline' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Transparent + Border</span>
       </div>
       
       <div class="button-row">
-        <span class="label">Secondary (Gray):</span>
+        <span class="label">Secondary (Muted):</span>
         <shadcn-button :content="{ text: 'Secondary', variant: 'secondary' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">hsl(210 40% 96%)</span>
       </div>
       
       <div class="button-row">
         <span class="label">Ghost (Transparent):</span>
         <shadcn-button :content="{ text: 'Ghost', variant: 'ghost' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Transparent, hover gray</span>
       </div>
       
       <div class="button-row">
         <span class="label">Link (Underlined):</span>
         <shadcn-button :content="{ text: 'Link', variant: 'link' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Underlined, no padding</span>
       </div>
     </div>
     
     <div class="test-section">
-      <div class="test-title">📏 Tailles (Exactes Shadcn)</div>
+      <div class="test-title">📏 Tailles (Exactes Shadcn UI)</div>
+      <div class="test-description">Heights et paddings identiques à la documentation Shadcn</div>
       
       <div class="button-row">
         <span class="label">Small (36px):</span>
         <shadcn-button :content="{ text: 'Small', size: 'sm' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">2.25rem height</span>
       </div>
       
       <div class="button-row">
         <span class="label">Default (40px):</span>
         <shadcn-button :content="{ text: 'Default', size: 'default' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">2.5rem height</span>
       </div>
       
       <div class="button-row">
         <span class="label">Large (44px):</span>
         <shadcn-button :content="{ text: 'Large', size: 'lg' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">2.75rem height</span>
       </div>
       
       <div class="button-row">
         <span class="label">Icon only (40×40px):</span>
         <shadcn-button :content="{ text: '', size: 'icon', leftIcon: { _state: 'mock' } }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Square button</span>
       </div>
     </div>
     
     <div class="test-section">
-      <div class="test-title">🔧 États et Icônes</div>
+      <div class="test-title">🎯 États & Interactions (Hover, Focus, Disabled)</div>
+      <div class="test-description">Test des états hover, focus et disabled avec les bonnes opacités</div>
       
       <div class="button-row">
-        <span class="label">Normal:</span>
-        <shadcn-button :content="{ text: 'Normal' }"></shadcn-button>
+        <span class="label">Normal (Hover me!):</span>
+        <shadcn-button :content="{ text: 'Hover Test', variant: 'default' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Should darken on hover</span>
       </div>
       
       <div class="button-row">
-        <span class="label">Disabled:</span>
+        <span class="label">Disabled (50% opacity):</span>
         <shadcn-button :content="{ text: 'Disabled', disabled: true }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Pointer events none</span>
       </div>
+      
+      <div class="button-row">
+        <span class="label">Outline Hover:</span>
+        <shadcn-button :content="{ text: 'Hover Outline', variant: 'outline' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Should fill gray</span>
+      </div>
+      
+      <div class="button-row">
+        <span class="label">Ghost Hover:</span>
+        <shadcn-button :content="{ text: 'Hover Ghost', variant: 'ghost' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Should show gray bg</span>
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <div class="test-title">🔧 Icônes & Contenu</div>
+      <div class="test-description">Test des icônes et du texte avec les bonnes dimensions</div>
       
       <div class="button-row">
         <span class="label">Left Icon:</span>
         <shadcn-button :content="{ text: 'Save', leftIcon: { _state: 'mock' } }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">1rem icon</span>
       </div>
       
       <div class="button-row">
         <span class="label">Right Icon:</span>
         <shadcn-button :content="{ text: 'Next', rightIcon: { _state: 'mock' } }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">1rem icon</span>
       </div>
       
       <div class="button-row">
         <span class="label">Both Icons:</span>
         <shadcn-button :content="{ text: 'Transfer', leftIcon: { _state: 'mock' }, rightIcon: { _state: 'mock' } }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">Gap 0.5rem</span>
+      </div>
+      
+      <div class="button-row">
+        <span class="label">Long Text Test:</span>
+        <shadcn-button :content="{ text: 'Very Long Button Text That Tests Wrapping', size: 'lg' }"></shadcn-button>
+        <span style="font-size: 12px; color: #6b7280;">No wrap</span>
       </div>
     </div>
     
     <div class="test-section">
       <div class="test-title">🎯 Combinaisons Avancées</div>
-      
-      <div class="button-row">
-        <span class="label">Outline + Large:</span>
-        <shadcn-button :content="{ text: 'Continue', variant: 'outline', size: 'lg' }"></shadcn-button>
-      </div>
+      <div class="test-description">Test des combinaisons variantes + tailles + icônes</div>
       
       <div class="button-row">
         <span class="label">Destructive + Small:</span>
@@ -168,27 +212,38 @@
       </div>
       
       <div class="button-row">
-        <span class="label">Ghost + Icon:</span>
-        <shadcn-button :content="{ text: 'Settings', variant: 'ghost', leftIcon: { _state: 'mock' } }"></shadcn-button>
+        <span class="label">Outline + Large + Icon:</span>
+        <shadcn-button :content="{ text: 'Continue', variant: 'outline', size: 'lg', rightIcon: { _state: 'mock' } }"></shadcn-button>
       </div>
       
       <div class="button-row">
-        <span class="label">Secondary + Large + Icons:</span>
-        <shadcn-button :content="{ text: 'Complete', variant: 'secondary', size: 'lg', leftIcon: { _state: 'mock' }, rightIcon: { _state: 'mock' } }"></shadcn-button>
+        <span class="label">Ghost + Icon Size:</span>
+        <shadcn-button :content="{ text: '', variant: 'ghost', size: 'icon', leftIcon: { _state: 'mock' } }"></shadcn-button>
+      </div>
+      
+      <div class="button-row">
+        <span class="label">Link + Small (no padding):</span>
+        <shadcn-button :content="{ text: 'Small Link', variant: 'link', size: 'sm' }"></shadcn-button>
+      </div>
+      
+      <div class="button-row">
+        <span class="label">Secondary + Disabled:</span>
+        <shadcn-button :content="{ text: 'Disabled Secondary', variant: 'secondary', disabled: true }"></shadcn-button>
       </div>
     </div>
     
     <div class="status">
-      ✅ <strong>Version Finalisée :</strong> Composant Shadcn Button optimisé pour Weweb
+      ✅ <strong>Shadcn UI Specs Implemented :</strong> Composant conforme aux spécifications exactes
       <br><br>
-      🎯 <strong>Améliorations :</strong>
+      🎯 <strong>Corrections apportées :</strong>
       <ul style="margin: 8px 0 0 20px;">
-        <li><strong>CSS non-scoped</strong> - Plus de problèmes de style dans Weweb</li>
-        <li><strong>Configuration organisée</strong> - Sections Content, Style, Icons, Behavior</li>
-        <li><strong>Labels détaillés</strong> - Descriptions avec tailles (36px, 40px, etc.)</li>
-        <li><strong>Props bindables</strong> - Texte, état disabled, icônes</li>
-        <li><strong>Couleurs exactes HSL</strong> - Identiques à Shadcn UI officiel</li>
-        <li><strong>Gestion d'événements</strong> - Click avec trigger-event pour Weweb</li>
+        <li><strong>Classes CSS corrigées</strong> - Séparation claire variantes vs tailles</li>
+        <li><strong>Couleurs exactes HSL</strong> - Format moderne Shadcn (sans virgules)</li>
+        <li><strong>États hover/focus/disabled</strong> - Comportements identiques à shadcn.com</li>
+        <li><strong>Variante link corrigée</strong> - Transparent, sans padding, underlined</li>
+        <li><strong>Transitions modernes</strong> - cubic-bezier et propriétés multiples</li>
+        <li><strong>Support dark mode</strong> - Media queries pour thème sombre</li>
+        <li><strong>Gestion icônes améliorée</strong> - Tailles et espacements exacts</li>
       </ul>
       <br>
       🚀 <strong>Prêt pour :</strong> Import dans Weweb sur <code>https://localhost:8080</code>
@@ -202,7 +257,7 @@
       template: '<div class="ww-icon"></div>'
     };
 
-    // Composant Shadcn Button (version finalisée)
+    // Composant Shadcn Button (version corrigée)
     const ShadcnButton = {
       name: "ShadcnButton",
       props: {
@@ -216,7 +271,7 @@
           
           const baseClasses = ['shadcn-btn'];
           const variantClass = `shadcn-btn--${variant}`;
-          const sizeClass = `shadcn-btn--${size}`;
+          const sizeClass = `shadcn-btn--size-${size}`;
           
           return [
             ...baseClasses,

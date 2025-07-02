@@ -1,95 +1,114 @@
 # 🎨 Shadcn Button for Weweb
 
-Ce projet contient plusieurs versions d'un composant **Shadcn Button** adapté pour [Weweb.io](https://www.weweb.io/).
+**Composant Button Shadcn UI professionnel** pour [Weweb.io](https://www.weweb.io/) - Structure simplifiée et optimisée.
 
-## 🏆 **Version Recommandée : Structure Officielle Weweb**
+## 🏆 **Composant Prêt à l'Emploi**
 
-### 📁 `shadcn-button-element/` ⭐
-**Version créée avec l'outil officiel Weweb** `@weweb/create-component`
+**Version finale créée avec l'outil officiel Weweb** `@weweb/create-component`
 
-- ✅ **Structure 100% conforme** aux standards Weweb
-- ✅ **6 Variantes Shadcn** : default, destructive, outline, secondary, ghost, link
-- ✅ **4 Tailles** : sm (36px), default (40px), lg (44px), icon (40x40px)
-- ✅ **Support complet** : icônes, états disabled, événements click
-- ✅ **Couleurs exactes HSL** du système Shadcn UI
-- ✅ **SCSS scoped** selon recommandations officielles
-- ✅ **Props simplifiées** : juste `content` (pas de `wwEditorState`)
+✅ **Caractéristiques :**
+- **6 Variantes Shadcn** : default, destructive, outline, secondary, ghost, link
+- **4 Tailles** : sm (36px), default (40px), lg (44px), icon (40×40px)
+- **Support complet** : icônes gauche/droite, états disabled, événements click
+- **Couleurs exactes HSL** du système Shadcn UI
+- **CSS optimisé** non-scoped pour Weweb
+- **Configuration organisée** en sections (Content, Style, Icons, Behavior)
+- **Props bindables** pour intégration dynamique
 
-#### 🚀 Utilisation :
+## 🚀 **Installation & Utilisation**
+
+### 1. **Développement Local :**
 ```bash
-cd shadcn-button-element
 npm install
-npm run serve --port=3001
+npm run serve
 ```
 **URL de développement :** `https://localhost:8080`
 
----
+### 2. **Import dans Weweb :**
+1. Ouvrir l'éditeur Weweb
+2. Popup **Developer** → Ajouter l'URL : `https://localhost:8080`
+3. Drag & drop le composant "Shadcn Button"
+4. Configurer : texte, variante, taille, icônes
 
-## 📂 **Autres Versions (Historique)**
-
-### 📁 `src/` & `ww-config.js`
-Version initiale avec structure personnalisée
-
-### 📁 `shadcn-button-official/`
-Copie de sauvegarde
-
-### 📁 Templates
-- `template-wwElement.vue` - Template Vue propre
-- `template-ww-config.js` - Configuration de base
-
----
-
-## 🎯 **Integration dans Weweb**
-
-1. **Lancer le serveur de développement :**
-   ```bash
-   cd shadcn-button-element
-   npm run serve
-   ```
-
-2. **Dans l'éditeur Weweb :**
-   - Ouvrir le popup **Developer**
-   - Ajouter l'URL : `https://localhost:8080`
-   - Le composant "Shadcn Button" apparaîtra avec toutes ses options
-
-3. **Pour la production :**
-   ```bash
-   npm run build --name=shadcn-button
-   ```
+### 3. **Build Production :**
+```bash
+npm run build
+```
 
 ## 🎨 **Aperçu des Variantes**
 
-- **Default** : Bouton principal sombre avec texte blanc
-- **Destructive** : Bouton rouge pour actions dangereuses  
-- **Outline** : Bouton transparent avec bordure
-- **Secondary** : Bouton gris clair pour actions secondaires
-- **Ghost** : Bouton transparent avec effet hover
-- **Link** : Bouton style lien souligné
+| Variante | Description | Usage |
+|----------|-------------|-------|
+| **Default** | Bouton sombre primaire | Actions principales |
+| **Destructive** | Bouton rouge | Actions dangereuses (supprimer) |
+| **Outline** | Transparent avec bordure | Actions secondaires |
+| **Secondary** | Gris clair | Alternatives |
+| **Ghost** | Transparent avec hover | Actions subtiles |
+| **Link** | Style lien souligné | Navigation |
 
 ## 🔧 **Configuration Disponible**
 
-- **Texte du bouton** (bindable)
-- **Variante** (6 options)
-- **Taille** (4 options)
-- **État désactivé** (on/off)
-- **Type HTML** (button/submit/reset)
-- **Icône gauche** (ww-icon)
-- **Icône droite** (ww-icon)
+### **📝 Content**
+- **Button text** (bindable) - Texte du bouton
 
-## 📝 **Historique du Projet**
+### **🎨 Style** 
+- **Variant** - 6 options avec descriptions (Default (Dark), etc.)
+- **Size** - 4 tailles avec dimensions exactes
 
-Ce projet est le résultat d'une évolution pour créer un composant Shadcn Button parfaitement adapté à Weweb :
+### **🎯 Icons**
+- **Left Icon** (bindable) - Icône gauche via ww-icon
+- **Right Icon** (bindable) - Icône droite via ww-icon
+
+### **⚙️ Behavior**
+- **Disabled** (bindable) - État désactivé conditionnel
+- **HTML Type** - button, submit, reset
+
+## 🧪 **Test Local**
+
+Ouvrir `test-local.html` pour voir :
+- ✅ Toutes les variantes avec couleurs exactes
+- ✅ Toutes les tailles (36px → 44px)
+- ✅ Support icônes et états
+- ✅ Combinaisons avancées
+
+## 📂 **Structure du Projet**
+
+```
+shadcn-button/
+├── README.md                    # 📖 Documentation
+├── package.json                 # 📦 Dépendances Weweb
+├── ww-config.js                 # ⚙️ Configuration Weweb
+├── src/
+│   └── wwElement.vue            # 🎯 Composant Vue principal
+├── test-local.html              # 🧪 Tests en local
+└── .gitignore                   # 🚫 Fichiers ignorés
+```
+
+## 🔄 **Historique & Évolution**
+
+Ce projet a évolué à travers plusieurs phases pour atteindre une version optimale :
 
 1. **Phase 1** : Adaptation manuelle avec structure personnalisée
-2. **Phase 2** : Découverte de problèmes de rendu dans Weweb
+2. **Phase 2** : Problèmes de rendu et incompatibilités CSS
 3. **Phase 3** : Découverte de l'outil officiel `@weweb/create-component`
-4. **Phase 4** : **Création de la version officielle** (recommandée)
+4. **Phase 4** : Version finale avec structure officielle et optimisations
+5. **Phase 5** : **Simplification structure** - Tous fichiers à la racine
 
 ## 🤝 **Contribution**
 
-Contributions bienvenues ! La version `shadcn-button-element/` suit les standards officiels Weweb et est la base recommandée pour les améliorations.
+Contributions bienvenues ! Le composant suit les standards officiels Weweb et le système de design Shadcn UI.
+
+## 📱 **Compatibilité**
+
+- ✅ **Weweb Editor** - Import via URL de développement
+- ✅ **Production** - Build optimisé
+- ✅ **Responsive** - Adaptatif toutes tailles
+- ✅ **Accessibilité** - Focus, disabled, ARIA
+- ✅ **Dark/Light Mode** - Couleurs HSL adaptatives
 
 ---
+
+**🎯 Prêt à utiliser dans vos projets Weweb !**
 
 **Repository :** [SebWell/shadcn-button](https://github.com/SebWell/shadcn-button)  
 **Weweb :** [weweb.io](https://www.weweb.io/)  
