@@ -3,7 +3,7 @@
         <!-- BOUTON SIMPLE avec couleurs personnalisables -->
         <button 
             class="shadcn-button"
-            :class="[content.variant || 'default', content.size || 'default']"
+            :class="buttonClasses"
             type="button"
             :disabled="content.disabled"
             @focus="onFocus"
@@ -72,19 +72,48 @@ export default {
             return this.content.text || 'Button';
         },
 
+        buttonClasses() {
+            const variant = this.content.variant || 'default';
+            const size = this.content.size || 'default';
+            
+            // Éviter la duplication si variant et size sont tous les deux 'default'
+            if (variant === 'default' && size === 'default') {
+                return ['default'];
+            }
+            
+            const classes = [variant];
+            if (size !== 'default') {
+                classes.push(size);
+            }
+            
+            return classes;
+        },
+
         colorVariables() {
             return {
-                '--custom-primary': this.content.primaryColor || 'hsl(222.2, 47.4%, 11.2%)',
-                '--custom-primary-foreground': this.content.primaryForeground || 'hsl(210, 40%, 98%)',
-                '--custom-destructive': this.content.destructiveColor || 'hsl(0, 84.2%, 60.2%)',
-                '--custom-destructive-foreground': this.content.destructiveForeground || 'hsl(210, 40%, 98%)',
-                '--custom-secondary': this.content.secondaryColor || 'hsl(210, 40%, 96%)',
-                '--custom-secondary-foreground': this.content.secondaryForeground || 'hsl(222.2, 84%, 4.9%)',
-                '--custom-border': this.content.borderColor || 'hsl(214.3, 31.8%, 91.4%)'
+                '--custom-primary': this.cleanColor(this.content.primaryColor) || 'hsl(222.2, 47.4%, 11.2%)',
+                '--custom-primary-foreground': this.cleanColor(this.content.primaryForeground) || 'hsl(210, 40%, 98%)',
+                '--custom-destructive': this.cleanColor(this.content.destructiveColor) || 'hsl(0, 84.2%, 60.2%)',
+                '--custom-destructive-foreground': this.cleanColor(this.content.destructiveForeground) || 'hsl(210, 40%, 98%)',
+                '--custom-secondary': this.cleanColor(this.content.secondaryColor) || 'hsl(210, 40%, 96%)',
+                '--custom-secondary-foreground': this.cleanColor(this.content.secondaryForeground) || 'hsl(222.2, 84%, 4.9%)',
+                '--custom-border': this.cleanColor(this.content.borderColor) || 'hsl(214.3, 31.8%, 91.4%)'
             };
         }
     },
     methods: {
+        cleanColor(color) {
+            if (!color) return null;
+            
+            // Si c'est une variable WeWeb avec fallback (var(--xxx, #color))
+            if (color.startsWith('var(') && color.includes(',')) {
+                const fallback = color.split(',')[1].replace(')', '').trim();
+                return fallback;
+            }
+            
+            return color;
+        },
+
         onFocus() {
             this.isReallyFocused = true;
             this.$emit('trigger-event', { name: 'focus' });
